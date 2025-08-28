@@ -57,6 +57,8 @@ while game:
         if e.type == QUIT:
             game = False
     win.fill(background_color)
+    p1.move_p1()
+    p2.move_p2()
     p1.reset()
     p2.reset()
     ball.reset()
