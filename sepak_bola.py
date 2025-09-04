@@ -51,6 +51,8 @@ p2 = Player('racket.png', 520, 200, 30, 100, 5)
 ball = GameSprite('tenis_ball.png', 250, 300, 50, 50, 5)
 clock = time.Clock()
 
+speed_x = 3
+speed_y = 3
 
 while game:
     for e in event.get():
@@ -62,5 +64,13 @@ while game:
     p1.reset()
     p2.reset()
     ball.reset()
+    ball.rect.x += speed_x
+    ball.rect.y += speed_y
+    if ball.rect.y > h - 50 or ball.rect.y < 0:
+        speed_y *= -1
+    if sprite.collide_rect(p1, ball) or sprite.collide_rect(p2, ball):
+        speed_x *= -1
+        speed_y *= 1
+
     display.update()
     clock.tick(60)
